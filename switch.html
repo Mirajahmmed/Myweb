@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>On/Off Switch</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f8ff;
+      margin: 0;
+    }
+
+    .switch-container {
+      text-align: center;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 80px;
+      height: 40px;
+    }
+
+    .switch input {
+      display: none;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, #ff7eb3, #ff758c);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
+      border-radius: 40px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 30px;
+      width: 30px;
+      left: 5px;
+      bottom: 5px;
+      background-color: white;
+      border: 2px solid #ff758c;
+      transition: all 0.4s ease;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    input:checked + .slider {
+      background: linear-gradient(45deg, #81ff9a, #28a745);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(40px);
+      border-color: #28a745;
+    }
+
+    .status {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 24px;
+      color: #444;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      transition: color 0.3s ease;
+    }
+
+    input:checked ~ .status {
+      color: #28a745;
+    }
+
+    input:not(:checked) ~ .status {
+      color: #ff0000;
+    }
+  </style>
+</head>
+<body>
+  <div class="switch-container">
+    <label class="switch">
+      <input type="checkbox" id="toggleSwitch">
+      <span class="slider"></span>
+    </label>
+    <div class="status" id="status">OFF</div>
+  </div>
+
+  <script>
+    const toggleSwitch = document.getElementById('toggleSwitch');
+    const statusText = document.getElementById('status');
+
+    toggleSwitch.addEventListener('change', function () {
+      if (this.checked) {
+        statusText.textContent = 'ON';
+      } else {
+        statusText.textContent = 'OFF';
+      }
+    });
+  </script>
+</body>
+</html>
